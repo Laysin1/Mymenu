@@ -1,0 +1,259 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+/* Header */
+.header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+}
+.header h1{
+  margin-left: 700px;
+}
+.header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-icon {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+
+.search-container {
+  padding: 10px;
+  position: absolute;
+  width: 1%; /* Adjusted width for a longer search bar */
+  top: 70px;
+  margin-left: 700px;
+  transform: translateX(-50%);
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px 20px; /* Adjusted for a cleaner look */
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+}
+
+
+/* Main content and Menu */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 60px; /* Added gap between items */
+}
+
+.menu-item {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.menu-item:hover {
+  transform: scale(1.05);
+}
+
+.menu-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.menu-item img:hover {
+  transform: scale(1.1);
+}
+
+.menu-item h3 {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.menu-item p {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.menu-item button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.menu-item button:hover {
+  background-color: #0056b3;
+}
+
+.description {
+  display: none;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.description.show {
+  display: block;
+  max-height: 200px;
+  padding: 10px;
+}
+/* For the sliding description panel */
+.description-slide {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  transition: left 0.3s ease;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.description-slide.active {
+  left: 0;
+}
+
+.search-container input {
+  border-radius: 15px;
+  padding: 10px;
+  font-size: 14px;
+  width: 200px;
+}
+
+.header .home-icon {
+  cursor: pointer;
+}
+
+
+/* Cart */
+.cart {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cart li {
+  margin-bottom: 10px;
+}
+
+.cart p {
+  font-weight: bold;
+  text-align: right;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.cart-item button {
+  padding: 8px;
+  font-size: 18px;
+}
+
+.cart-item img {
+  width: 50px;
+  height: auto;
+}
+
+.cart-item span {
+  margin: 0 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+.home-icon {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.home-icon:hover {
+  transform: scale(1.1);
+}
+.description {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100%;
+  background-color: white;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: left 0.3s ease;
+}
+
+.description.show {
+  left: 0;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu {
+    grid-template-columns: 1fr;
+  }
+
+  .cart {
+    width: 100%;
+  }
+}
