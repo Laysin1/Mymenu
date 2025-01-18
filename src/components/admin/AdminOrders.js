@@ -3,20 +3,12 @@ import React, { useState, useEffect } from 'react';
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
 
-  // Simulated orders data
+  // Fetch orders from GitHub-hosted JSON file
   useEffect(() => {
-    const mockOrders = [
-      {
-        id: 1,
-        date: new Date().toISOString(),
-        customer: 'John Doe',
-        items: ['Grilled Salmon', 'Chocolate Cake'],
-        total: 33.98,
-        status: 'pending'
-      },
-      // Add more mock orders as needed
-    ];
-    setOrders(mockOrders);
+    fetch('https://raw.githubusercontent.com/Laysin1/menu-json/refs/heads/main/orders.json')
+      .then((response) => response.json())
+      .then((data) => setOrders(data))
+      .catch((error) => console.error('Error fetching orders:', error));
   }, []);
 
   return (
@@ -26,24 +18,30 @@ const AdminOrders = () => {
         <table className="min-w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Items</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Order ID
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Table ID
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Items
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Total
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Status
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {orders.map((order) => (
               <tr key={order.id}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{order.id}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{order.tableId}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {new Date(order.date).toLocaleDateString()}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{order.customer}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {order.items.join(', ')}
+                  {order.items.map((item) => `${item.name} (${item.quantity})`).join(', ')}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                   ${order.total.toFixed(2)}

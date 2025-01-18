@@ -1,41 +1,25 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Header from './components/user/Header';
 import UserPage from './pages/UserPage';
 import AdminPage from './pages/AdminPage';
-import './styles.css';
+import AdminDashboard from './components/admin/AdminDashboard';
+import AdminMenu from './components/admin/AdminMenu';
+import AdminOrders from './components/admin/AdminOrders';
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/"
-          element={
-            user ? (
-              user.role === 'admin' ? (
-                <Navigate to="/admin" />
-              ) : (
-                <UserPage />
-              )
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        <Route
-          path="/admin"
-          element={
-            user && user.role === 'admin' ? (
-              <AdminPage />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
+        {/* User Route */}
+        <Route path="/table/:tableId" element={<UserPage />} />
+
+        {/* Admin Routes */}
+        <Route path="/admin" element={<AdminPage />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="menu" element={<AdminMenu />} />
+          <Route path="orders" element={<AdminOrders />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
